@@ -1,0 +1,115 @@
+<Window x:Class="calc.CalculatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="関数電卓" Height="800" Width="1800"
+        PreviewKeyDown="Window_PreviewKeyDown" PreviewTextInput="Window_PreviewTextInput">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="MinWidth" Value="64" />
+            <Setter Property="MinHeight" Value="48" />
+            <Setter Property="Margin" Value="6" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style x:Key="FunctionButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="#FFEDF7" />
+        </Style>
+        <Style x:Key="OperatorButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="#FFF4E5" />
+        </Style>
+        <Style x:Key="ActionButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="#F8EAEA" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBox Name="Display" Grid.Row="0" Height="64" FontSize="28" IsReadOnly="True" TextAlignment="Right" VerticalContentAlignment="Center"/>
+
+        <Grid Grid.Row="1" Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: functions and constants -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                <UniformGrid Name="FunctionGrid" Columns="4" Margin="6">
+                    <Button Content="DEG" Name="AngleToggleLeft" Click="ToggleAngleMode_Click" />
+                    <Button Content="pi" Click="Constant_Click" />
+                    <Button Content="e" Click="Constant_Click" />
+                    <Button Content="abs" Click="Function_Click" />
+
+                    <Button Content="sin" Click="Function_Click" />
+                    <Button Content="cos" Click="Function_Click" />
+                    <Button Content="tan" Click="Function_Click" />
+
+                    <Button Content="asin" Click="Function_Click" />
+                    <Button Content="acos" Click="Function_Click" />
+                    <Button Content="atan" Click="Function_Click" />
+
+                    <Button Content="sinh" Click="Function_Click" />
+                    <Button Content="cosh" Click="Function_Click" />
+                    <Button Content="tanh" Click="Function_Click" />
+
+                    <Button Content="exp" Click="Function_Click" />
+                    <Button Content="ln" Click="Function_Click" />
+                    <Button Content="log" Click="Function_Click" />
+
+                    <Button Content="sqrt" Click="Function_Click" />
+                    <Button Content="fact" Click="Function_Click" />
+                </UniformGrid>
+            </ScrollViewer>
+
+            <!-- Right: numeric keypad, top controls and some quick functions -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <Grid Name="NumericGrid" Margin="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" Grid.Column="0" Content="(" Click="Button_Click" />
+                    <Button Grid.Row="0" Grid.Column="1" Content=")" Click="Button_Click" />
+                    <Button Grid.Row="0" Grid.Column="2" Content="^" Click="Button_Click" />
+                    <Button Grid.Row="0" Grid.Column="3" Content="/" Click="Button_Click" />
+                    <Button Grid.Row="0" Grid.Column="4" Content="←" Click="Backspace_Click" />
+
+                    <Button Grid.Row="1" Grid.Column="0" Content="7" Click="Button_Click" />
+                    <Button Grid.Row="1" Grid.Column="1" Content="8" Click="Button_Click" />
+                    <Button Grid.Row="1" Grid.Column="2" Content="9" Click="Button_Click" />
+                    <Button Grid.Row="1" Grid.Column="3" Content="*" Click="Button_Click" />
+                    <Button Grid.Row="1" Grid.Column="4" Content="C" Click="ClearEntry_Click" />
+
+                    <Button Grid.Row="2" Grid.Column="0" Content="4" Click="Button_Click" />
+                    <Button Grid.Row="2" Grid.Column="1" Content="5" Click="Button_Click" />
+                    <Button Grid.Row="2" Grid.Column="2" Content="6" Click="Button_Click" />
+                    <Button Grid.Row="2" Grid.Column="3" Content="-" Click="Button_Click" />
+                    <Button Grid.Row="2" Grid.Column="4" Content="AC" Click="Clear_Click" />
+
+                    <Button Grid.Row="3" Grid.Column="0" Content="1" Click="Button_Click" />
+                    <Button Grid.Row="3" Grid.Column="1" Content="2" Click="Button_Click" />
+                    <Button Grid.Row="3" Grid.Column="2" Content="3" Click="Button_Click" />
+                    <Button Grid.Row="3" Grid.Column="3" Content="+" Click="Button_Click" />
+                    <Button Grid.Row="3" Grid.Column="4" Content="=" Click="Equals_Click" />
+
+                    <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="0" Click="Button_Click" />
+                    <Button Grid.Row="4" Grid.Column="2" Content="." Click="Button_Click" />
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
